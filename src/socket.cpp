@@ -7,7 +7,7 @@
 	#include <strings.h>
 	#include "ev.h"
 
-	#define PORT 8333
+	#define PORT 8341
 	#define BUFFER_SIZE 1024
 
 	//gcc test.c -lm ev.o
@@ -48,10 +48,8 @@
 	    ev_timer_init (&timeout_watcher, timeout_cb, 2, 1);
 	    ev_timer_start (loop, &timeout_watcher);
 
-	    while (1) {
-	        printf("ev_loop\n") ;
-	        ev_loop(loop, 0);
-	    }
+	    ev_run(loop, 0);
+
 	    return 0;
 	}
 
@@ -102,6 +100,8 @@
 
 	    send(watcher->fd, buffer, read, 0);
 	    bzero(buffer, read);
+
+	    sleep(1);
 	}
 
 	static void timeout_cb (EV_P_ ev_timer *w, int revents) {

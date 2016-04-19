@@ -49,11 +49,6 @@ int main1(int argc,char* argv[])
 
 
 
-
-
-
-
-
     ev_run (loop,0);
 
     return 0;
